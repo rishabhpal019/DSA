@@ -1,0 +1,19 @@
+class Solution:
+    def numTilePossibilities(self, tiles: str) -> int:
+        all_sequences = set()
+
+        def backtrack (word,visited):
+            for i in range(len(tiles)):
+                if visited[i]:
+                    continue
+                sequence = word + tiles[i]
+                visited[i] = True
+                all_sequences.add (sequence)
+                backtrack(sequence, visited)
+                visited[i] = False
+        backtrack("", [False] * len(tiles))
+        return len(all_sequences)
+
+
+
+                
