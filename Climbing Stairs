@@ -1,0 +1,12 @@
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        # Base cases: 1 way to climb 1 stair, 1 way to climb 0 stairs
+        one, two = 1, 1  # 'one' = ways to reach step n-1, 'two' = ways to reach step n-2
+
+        # Loop starts from step 2 to n
+        for i in range(n - 1):
+            temp = one           # Save current 'one' (ways to reach n-1)
+            one = one + two      # Ways to reach current step = n-1 + n-2
+            two = temp           # Update 'two' to old 'one'
+
+        return one  # 'one' now contains ways to reach step n
