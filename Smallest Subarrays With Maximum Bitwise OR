@@ -1,0 +1,15 @@
+from typing import List
+
+class Solution:
+    def smallestSubarrays(self, nums: List[int]) -> List[int]:
+        last = [-1] * 32
+        n = len(nums)
+        
+        for i in range(n - 1, -1, -1):
+            for a in range(32):
+                if nums[i] & (1 << a):
+                    last[a] = i
+            max_last = max(last)
+            nums[i] = max(1, max_last - i + 1)
+        
+        return nums
