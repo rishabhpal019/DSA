@@ -1,0 +1,14 @@
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        ans, cnt = 0, 0  # Initialize ans to store result, cnt to count current streak
+        max_element = max(nums)  # Find the maximum value in the array
+
+        for num in nums:
+            if num == max_element:
+                cnt += 1  # If current number is max, increment count
+            else:
+                cnt = 0  # Reset count if current number is not max
+
+            ans = max(ans, cnt)  # Update the answer with the maximum streak found
+
+        return ans  # Return the length of the longest subarray with max value
