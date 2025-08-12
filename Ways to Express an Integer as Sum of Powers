@@ -1,0 +1,19 @@
+class Solution:
+    def numberOfWays(self, n: int, x: int) -> int:
+        mod = 10**9+7
+        dp = {}
+        def solve(target, current):
+            if (target, current) in dp:
+                return dp[(target, current)]
+            
+            if target == 0:
+                return 1
+            if target < 0 or current**x > target:
+                return 0
+            power = current**x
+            c1 = solve(target - power, current + 1)
+            c2 = solve(target, current + 1)
+            dp[(target, current)] = (c1 + c2) % mod
+            return dp[(target, current)]
+        return solve(n, 1)
+        
