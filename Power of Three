@@ -1,0 +1,15 @@
+class Solution:
+    def isPowerOfThree(self, n: int) -> bool:
+        if n <= 0:
+            return False
+        count = 0
+
+        while n > 0:
+            val = n % 3
+            if val == 1:
+                count += 1
+            if val == 2:
+                return False
+            n //= 3
+        return count == 1
+        
